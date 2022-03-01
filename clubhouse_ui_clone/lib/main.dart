@@ -1,12 +1,113 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
-import 'package:clubhouse_ui_clone/room.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Color clubHouseColor = Color.fromARGB(255, 239, 237, 225);
 // Color clubHouseBottomColor = Color.fromARGB(255, 239, 237, 225);
 Color clubHouseBottomColor = Color.fromARGB(255, 87, 173, 105);
+
+class Palette {
+  static const Color background = Color(0xFFF0F0E4);
+  static const Color secondaryBackground = Color(0xFFE7E4D3);
+  static const Color green = Color(0xFF2AAF61);
+}
+
+class User {
+  final String givenName;
+  final String familyName;
+  final String imageUrl;
+
+  const User({
+    required this.givenName,
+    required this.familyName,
+    required this.imageUrl,
+  });
+}
+
+const List<User> _allUsers = [
+  User(
+    givenName: 'Marcus',
+    familyName: 'Ng',
+    imageUrl:
+        'https://images.unsplash.com/photo-1578133671540-edad0b3d689e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80',
+  ),
+  User(
+    givenName: 'David',
+    familyName: 'Brooks',
+    imageUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Jane',
+    familyName: 'Doe',
+    imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Matthew',
+    familyName: 'Hinkle',
+    imageUrl:
+        'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1331&q=80',
+  ),
+  User(
+    givenName: 'Amy',
+    familyName: 'Smith',
+    imageUrl:
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80',
+  ),
+  User(
+    givenName: 'Ed',
+    familyName: 'Morris',
+    imageUrl:
+        'https://images.unsplash.com/photo-1521119989659-a83eee488004?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=664&q=80',
+  ),
+  User(
+    givenName: 'Carolyn',
+    familyName: 'Duncan',
+    imageUrl:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+  User(
+    givenName: 'Paul',
+    familyName: 'Pinnock',
+    imageUrl:
+        'https://images.unsplash.com/photo-1519631128182-433895475ffe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+  ),
+  User(
+      givenName: 'Elizabeth',
+      familyName: 'Wong',
+      imageUrl:
+          'https://images.unsplash.com/photo-1515077678510-ce3bdf418862?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=675&q=80'),
+  User(
+    givenName: 'James',
+    familyName: 'Lathrop',
+    imageUrl:
+        'https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=592&q=80',
+  ),
+  User(
+    givenName: 'Jessie',
+    familyName: 'Samson',
+    imageUrl:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+  ),
+];
+
+class Room {
+  final String club;
+  final String name;
+  final String time;
+  final List<User> speakers;
+  final List<User> followedBySpeakers;
+  final List<User> others;
+
+  const Room({
+    required this.club,
+    required this.name,
+    this.time = '',
+    this.speakers = const [],
+    this.followedBySpeakers = const [],
+    this.others = const [],
+  });
+}
 
 const List<Room> upcomingRoomsList = [
   Room(
@@ -26,6 +127,30 @@ const List<Room> upcomingRoomsList = [
   ),
 ];
 
+final List<Room> roomsList = [
+  Room(
+    club: 'Social Society',
+    name: 'Welcome to Clubhouse 🎉 (Walkthrough with Q&A)',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+  Room(
+    club: 'Good Time',
+    name: '⏰ A Very Important Person on Good Time',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+  Room(
+    club: 'NYU girls roasting tech guys',
+    name: 'love and bitcoin edition 💰',
+    speakers: (List<User>.from(_allUsers)..shuffle()).getRange(0, 4).toList(),
+    followedBySpeakers: List<User>.from(_allUsers)..shuffle(),
+    others: List<User>.from(_allUsers)..shuffle(),
+  ),
+];
+
 void main() {
   runApp(ClubHouse());
 }
@@ -36,7 +161,14 @@ class ClubHouse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter ClubHouse UI',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(backgroundColor: Palette.background),
+        iconTheme: const IconThemeData(color: Colors.black),
+        primaryColor: Colors.white,
+        accentColor: Palette.green,
+      ),
       home: HomePage(), // 홈페이지 보여주기
     );
   }
@@ -123,102 +255,16 @@ class FirstPage extends StatelessWidget {
         ),
       ),
       body: Stack(
+        alignment: Alignment.center,
         children: [
           ListView(
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
             children: [
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: Row(
-                  children: [
-                    // SizedBox(
-                    //   width: 30,
-                    // ),
-                    SizedBox(
-                      // width: 65,
-                      child: Column(
-                        children: [
-                          Text.rich(
-                            TextSpan(
-                              text: '3:00 PM' + '    ',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: 'Flutter 🏡',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Flutter Engage Recap 🔴",
-                                  style: TextStyle(fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // Row(
-                    //   children: [
-                    //     SizedBox(
-                    //       width: 50,
-                    //     ),
-                    //     Text("Flutter Engage Recap 🔴"),
-                    //   ],
-                    // ),
-
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Text(
-                    //       'Flutter 🏡',
-                    //       style: TextStyle(
-                    //         fontSize: 13,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //     Text(
-                    //       'Flutter Engage Recap 🔴',
-                    //       style: TextStyle(
-                    //         fontSize: 15,
-                    //         // fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     )
-                    //   ],
-                    // ),
-                    // Expanded(child: Text("test"))
-                  ],
-                ),
-                // child: InkWell(
-                //   splashColor: clubHouseColor,
-                //   onTap: () {
-                //     debugPrint('Card tapped.');
-                //   },
-                //   child: const SizedBox(
-                //     width: 300,
-                //     height: 100,
-                //     child: Text('A card that can be tapped'),
-                //   ),
-                // ),
+              UpcomingRooms(upcomingRooms: upcomingRoomsList),
+              const SizedBox(
+                height: 12.0,
               ),
-              const SizedBox(height: 300.0),
-              Text('data'),
-              const SizedBox(height: 300.0),
-              Text('data'),
-              const SizedBox(height: 300.0),
+              ...roomsList.map((e) => RoomCard(room: e)),
             ],
           ),
           // Positioned(
@@ -231,7 +277,6 @@ class FirstPage extends StatelessWidget {
               bottom: 60,
               child: Row(
                 children: [
-                  SizedBox(width: 35),
                   GestureDetector(
                     onTap: () {
                       print("버튼 클릭 됨");
@@ -250,7 +295,7 @@ class FirstPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(width: 50),
+                  SizedBox(width: 40),
                   GestureDetector(
                     onTap: () {
                       print("+ start a room 버튼 클릭 됨");
@@ -282,7 +327,7 @@ class FirstPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 50),
+                  SizedBox(width: 30),
                   GestureDetector(
                     onTap: () => Navigator.push(
                       context,
@@ -299,52 +344,6 @@ class FirstPage extends StatelessWidget {
           ),
         ],
       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.symmetric(
-      //     horizontal: 10,
-      //     vertical: 10,
-      //   ),
-      //   child: Column(
-      //     children: [
-      //       Card(
-      //         child: Row(
-      //           mainAxisSize: MainAxisSize.min,
-      //           children: <Widget>[
-      //             Container(
-      //               width: 70,
-      //               padding: EdgeInsets.all(1),
-      //               child: Text(
-      //                 '3:00 PM',
-      //                 style: TextStyle(fontSize: 13),
-      //               ),
-      //             ),
-      //             SizedBox(
-      //               width: 10,
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 crossAxisAlignment: CrossAxisAlignment.start,
-      //                 children: [
-      //                   Text.rich(
-      //                     TextSpan(
-      //                       style: TextStyle(
-      //                           fontSize: 10, fontWeight: FontWeight.bold),
-      //                       text: 'Flutter',
-      //                       children: <TextSpan>[
-      //                         TextSpan(text: ' with '),
-      //                         TextSpan(text: 'TextStyle.'),
-      //                       ],
-      //                     ),
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
@@ -474,6 +473,213 @@ class SecondPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class UpcomingRooms extends StatelessWidget {
+  final List<Room> upcomingRooms;
+  const UpcomingRooms({Key? key, required this.upcomingRooms})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Palette.secondaryBackground,
+          borderRadius: BorderRadius.circular(20.0)),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 32.0, top: 4.0, bottom: 4.0),
+        child: Column(
+          children: upcomingRooms
+              .map(
+                (e) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: e.club.isNotEmpty ? 2.0 : 0),
+                        child: Text(e.time),
+                      ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (e.club.isNotEmpty)
+                              Flexible(
+                                child: Text(
+                                  '${e.club}'.toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .overline!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 1.0,
+                                      ),
+                                ),
+                              ),
+                            Flexible(
+                              child: Text(
+                                e.name,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class RoomCard extends StatelessWidget {
+  final Room room;
+  const RoomCard({Key? key, required this.room}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print("enter room!");
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${room.club} 🏡'.toUpperCase(),
+                  style: Theme.of(context).textTheme.overline!.copyWith(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1.0,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  room.name,
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: 12.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 100.0,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 28.0,
+                              top: 20.0,
+                              child: UserProfileImage(
+                                imageURL: room.speakers[1].imageUrl,
+                                size: 48,
+                              ),
+                            ),
+                            UserProfileImage(
+                              imageURL: room.speakers[0].imageUrl,
+                              size: 48,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...room.speakers.map(
+                            (e) => Text(
+                              '${e.givenName} ${e.familyName} 💬',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(fontSize: 16.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        '${room.speakers.length + room.followedBySpeakers.length + room.others.length} ',
+                                  ),
+                                  const WidgetSpan(
+                                    child: Icon(
+                                      CupertinoIcons.person_fill,
+                                      size: 18.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '/ ${room.speakers.length}',
+                                  ),
+                                  const WidgetSpan(
+                                    child: Icon(
+                                      CupertinoIcons.chat_bubble_fill,
+                                      size: 18.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UserProfileImage extends StatelessWidget {
+  final String imageURL;
+  final double size;
+
+  const UserProfileImage({Key? key, required this.imageURL, this.size = 48.0})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size / 2 - size / 18),
+      child:
+          Image.network(imageURL, height: size, width: size, fit: BoxFit.cover),
     );
   }
 }
