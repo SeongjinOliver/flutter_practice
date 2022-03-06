@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toss_ui_clone/config/toss_colors.dart';
 import 'package:toss_ui_clone/pages/banefitPage.dart';
 import 'package:toss_ui_clone/pages/homePage.dart';
+import 'package:toss_ui_clone/pages/paymentPage.dart';
 
 void main() {
   runApp(const TossApp());
@@ -35,7 +36,8 @@ class _TossState extends State<Toss> {
         index: currentIndex, // index 순서에 해당하는 child를 맨 위에 보여줌
         children: const [
           HomePage(),
-          // BanefitPage(),
+          BanefitPage(),
+          PaymentPage(),
         ],
       ),
       bottomNavigationBar: Container(

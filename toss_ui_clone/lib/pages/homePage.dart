@@ -1,23 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toss_ui_clone/config/toss_colors.dart';
-import 'package:toss_ui_clone/main.dart';
 import 'package:toss_ui_clone/model/tileText.dart';
 
-const List<TileText> topContainer = [
-  TileText(
-    bigTitle: '',
-    image: '',
-    title: '',
-    subTitle: '',
-  ),
-  TileText(
-    bigTitle: '',
-    image: '',
-    title: '',
-    subTitle: '',
-  ),
-];
+// const List<TileText> topContainer = [
+//   TileText(
+//     bigTitle: '',
+//     image: '',
+//     title: '',
+//     subTitle: '',
+//   ),
+//   TileText(
+//     bigTitle: '',
+//     image: '',
+//     title: '',
+//     subTitle: '',
+//   ),
+// ];
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,13 +63,54 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TopContainerView(),
-              TossBank(),
-              Asset(),
-              Consumption(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Column(
+              children: [
+                TopContainerView(),
+                SizedBox(height: 12),
+                TossBank(),
+                SizedBox(height: 12),
+                Asset(),
+                SizedBox(height: 12),
+                Consumption(),
+                SizedBox(height: 12),
+                BottomContainerView(),
+                SizedBox(height: 12),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(vertical: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          print('금액 숨기기!');
+                        },
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text('금액 숨기기'),
+                        ),
+                      ),
+                      Container(
+                        color: TossColor.bluegrey,
+                        width: 1,
+                        height: 12,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print('자산 추가!');
+                        },
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: Text('자산 추가'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -96,37 +136,34 @@ class TopContainerView extends StatelessWidget {
     );
     return GestureDetector(
       onTap: () => print("농협 잔액 다시 표시하기 클릭!"),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 5),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: ListTile(
+          leading: Image.asset(
+            tileText.image,
+            width: 35,
           ),
-          child: ListTile(
-            leading: Image.asset(
-              tileText.image,
-              width: 35,
+          title: Text(
+            tileText.title,
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.grey[600],
             ),
-            title: Text(
-              tileText.title,
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey[600],
-              ),
+          ),
+          subtitle: Text(
+            tileText.subTitle,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.blue[700],
             ),
-            subtitle: Text(
-              tileText.subTitle,
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.blue[700],
-              ),
-            ),
-            trailing: Icon(
-              CupertinoIcons.chevron_forward,
-              color: Colors.grey[500],
-              size: 20,
-            ),
+          ),
+          trailing: Icon(
+            CupertinoIcons.chevron_forward,
+            color: Colors.grey[500],
+            size: 20,
           ),
         ),
       ),
@@ -147,54 +184,51 @@ class TossBank extends StatelessWidget {
     );
     return GestureDetector(
       onTap: () => print("농협 잔액 다시 표시하기 클릭!"),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 10),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 13, top: 15),
-                child: Text(
-                  tileText.bigTitle,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 13, top: 15),
+              child: Text(
+                tileText.bigTitle,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              ListTile(
-                leading: Image.asset(
-                  tileText.image,
-                  width: 35,
-                ),
-                title: Text(
-                  tileText.title,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey[600],
-                  ),
-                ),
-                subtitle: Text(
-                  tileText.subTitle,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                trailing: Icon(
-                  CupertinoIcons.chevron_forward,
-                  color: Colors.grey[500],
-                  size: 20,
+            ),
+            ListTile(
+              leading: Image.asset(
+                tileText.image,
+                width: 35,
+              ),
+              title: Text(
+                tileText.title,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey[600],
                 ),
               ),
-            ],
-          ),
+              subtitle: Text(
+                tileText.subTitle,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              trailing: Icon(
+                CupertinoIcons.chevron_forward,
+                color: Colors.grey[500],
+                size: 20,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -226,44 +260,41 @@ class Asset extends StatelessWidget {
       title: '대출, 41개 금융사 대기중',
       subTitle: '내 최대 대출 한도 보기',
     );
-    return Padding(
-      padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 13, top: 15),
-              child: Text(
-                '자산',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 13, top: 15),
+            child: Text(
+              '자산',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            ...tileTextList.map(
-              (e) => TileListInButtonContainer(
-                tileText: e,
-                isButton: true,
-                buttonName: '송금',
-              ),
+          ),
+          ...tileTextList.map(
+            (e) => TileListInButtonContainer(
+              tileText: e,
+              isButton: true,
+              buttonName: '송금',
             ),
-            Divider(),
-            GestureDetector(
-              onTap: () => print("내 최대 대출 한도 보기"),
-              child: TileListInButtonContainer(
-                tileText: creditLine,
-                isButton: false,
-                buttonName: '송금',
-              ),
+          ),
+          Divider(),
+          GestureDetector(
+            onTap: () => print("내 최대 대출 한도 보기"),
+            child: TileListInButtonContainer(
+              tileText: creditLine,
+              isButton: false,
+              buttonName: '송금',
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -288,36 +319,33 @@ class Consumption extends StatelessWidget {
         subTitle: '금액 보기',
       )
     ];
-    return Padding(
-      padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 13, top: 15),
-              child: Text(
-                '소비',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 13, top: 15),
+            child: Text(
+              '소비',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            TileListInButtonContainer(
-                tileText: tileTextList[0], isButton: true, buttonName: '내역'),
-            Divider(),
-            GestureDetector(
-              onTap: () => print("내 최대 대출 한도 보기"),
-              child: TileListInButtonContainer(
-                  tileText: tileTextList[1], isButton: false, buttonName: '내역'),
-            ),
-          ],
-        ),
+          ),
+          TileListInButtonContainer(
+              tileText: tileTextList[0], isButton: true, buttonName: '내역'),
+          Divider(),
+          GestureDetector(
+            onTap: () => print("내 최대 대출 한도 보기"),
+            child: TileListInButtonContainer(
+                tileText: tileTextList[1], isButton: false, buttonName: '내역'),
+          ),
+        ],
       ),
     );
   }
@@ -373,6 +401,154 @@ class TileListInButtonContainer extends StatelessWidget {
   }
 }
 
+class BottomContainerView extends StatelessWidget {
+  const BottomContainerView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 130,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Container(
+              width: 110,
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              margin: EdgeInsets.only(right: 12),
+              decoration: BoxDecoration(
+                color: TossColor.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      '1분 만에',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "내 보험\n전부 조회",
+                      style: TextStyle(
+                        color: TossColor.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Image.asset('assets/third_page_icon_7.png'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 110,
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              margin: EdgeInsets.only(right: 12),
+              decoration: BoxDecoration(
+                color: TossColor.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      '혜택 주는',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "차 보험료\n조회",
+                      style: TextStyle(
+                        color: TossColor.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Image.asset('assets/third_page_icon_8.png'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 110,
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              decoration: BoxDecoration(
+                color: TossColor.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      '최근',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "캐시백\n받기",
+                      style: TextStyle(
+                        color: TossColor.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Image.asset('assets/third_page_icon_5.png'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 // class BankContainer extends StatelessWidget {
 //   final TileText tileText;
 //   const BankContainer({Key? key, required this.tileText}) : super(key: key);
